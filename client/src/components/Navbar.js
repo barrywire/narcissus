@@ -19,15 +19,15 @@ export default function Navbar({ active })
                     </span>
                 </Link>
 
-                <ul className='nav justify-content-between'>
-                    <li className='nav-item'>
-                        <Link to='/account' className={`nav-link ${ active === 'account' ? 'active' : '' }`}>
-                            Account
-                        </Link>
-                    </li>
+                <ul className='nav nav-pills justify-content-between'>
                     <li className='nav-item'>
                         <Link to='/write' className={`nav-link ${ active === 'write' ? 'active' : '' }`}>
                             Write
+                        </Link>
+                    </li>
+                    <li className='nav-item'>
+                        <Link to='/account' className={`nav-link ${ active === 'account' ? 'active' : '' }`}>
+                            Account
                         </Link>
                     </li>
                 </ul>

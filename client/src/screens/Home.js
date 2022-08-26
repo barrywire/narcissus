@@ -5,7 +5,7 @@ import React from 'react'
 import Meta from '../components/Meta'
 import Navbar from '../components/Navbar'
 
-const Home = () =>
+export default function Home ()
 {
     return (
         <>
@@ -14,11 +14,9 @@ const Home = () =>
 
             <div className='container py-3'>
                 <h5>
-                    Home
+                    Journal entries.
                 </h5>
             </div>
         </>
     )
 }
-
-export default Home
