@@ -1,2 +1,7 @@
-# narcissus
-The Random Journal Website
+# Narcissus
+
+Narcissus - The Random Journal Website.
+
+## Tech Stack
+
+1. React.js
