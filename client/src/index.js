@@ -1,3 +1,7 @@
+// Bootstrap imports
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
+
 // React imports
 import React from 'react';
 
@@ -5,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 // Styling imports
-import './styles/index.css';
+import './styles/main.css';
 
 // Component imports
 import App from './App';

@@ -1,22 +1,18 @@
+// React imports
+import React from 'react';
+
+// React Router imports
+import { Route, Routes } from 'react-router-dom';
+
+// Screen imports
+import Home from './screens/Home';
+
 function App()
 {
-  // TODO: Handle the routing here
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home />} />
+    </Routes>
   );
 }
 
