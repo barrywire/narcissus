@@ -4,9 +4,8 @@ import React from 'react'
 // Component imports
 import Meta from '../components/Meta'
 import Navbar from '../components/Navbar'
-import Write from '../components/Write'
 
-export default function Home()
+export default function Home ()
 {
     return (
         <>
@@ -17,10 +16,6 @@ export default function Home()
                 <h5>
                     Journal entries.
                 </h5>
-
-                <hr className='my-lg-5 my-md-3' />
-
-                <Write />
             </div>
         </>
     )

@@ -20,11 +20,14 @@ export default function Navbar({ active })
                 </Link>
 
                 <ul className='nav nav-pills justify-content-between'>
+                    {/* TODO: Set to disappear in sign in */}
                     <li className='nav-item'>
-                        <Link to='/write' className={`nav-link ${ active === 'write' ? 'active' : '' }`}>
-                            Write
+                        <Link to='/signin' className={`nav-link ${ active === 'signin' ? 'active' : '' }`}>
+                            Sign In
                         </Link>
                     </li>
+
+                    {/* TODO: Set to appear on sign in */}
                     <li className='nav-item'>
                         <Link to='/account' className={`nav-link ${ active === 'account' ? 'active' : '' }`}>
                             Account
