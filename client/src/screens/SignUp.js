@@ -1,12 +1,36 @@
 // React imports
-import React from 'react'
+import React, { useState } from 'react'
 
 // Component imports
 import Meta from '../components/Meta'
 import Navbar from '../components/Navbar'
 
-export default function SignUp()
+// Utility imports
+import { UserAuth } from '../context/AuthContext'
+
+const SignUp = () =>
 {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+
+    const { createUser } = UserAuth()
+
+    const handleSubmit = async (e) =>
+    {
+        e.preventDefault()
+
+        setError('')
+        try
+        {
+            await createUser(email, password)
+        } catch (error)
+        {
+            setError(error.message)
+            console.log(error.message)
+        }
+    }
+
     return (
         <>
             <Meta title='Sign In - Narcissus' />
@@ -18,19 +42,21 @@ export default function SignUp()
                 </h5>
 
 
-                <form className='row g-3 px-5'>
-                    <div className='col-md-12'>
+                <form onSubmit={handleSubmit} className='row g-3 px-5'>
+                    <div className='col-md-6'>
                         <label htmlFor='inputemail' className='form-label'>Email</label>
-                        <input type='email' name='email' className='form-control' id='inputemail' />
+                        <input type='email' onChange={(e) => setEmail(e.target.value)} name='email' className='form-control' id='inputemail' />
                     </div>
                     <div className='col-md-6'>
                         <label htmlFor='inputpass' className='form-label'>Password</label>
-                        <input type='password' name='password' className='form-control' id='inputpass' />
+                        <input type='password' onChange={(e) => setPassword(e.target.value)} name='password' className='form-control' id='inputpass' />
                     </div>
-                    <div className='col-md-6'>
+
+                    {/* TODO: Add password confirmation functionality */}
+                    {/* <div className='col-md-6'>
                         <label htmlFor='inputpassconf' className='form-label'>Confirm Password</label>
                         <input type='password' name='passwordconf' className='form-control' id='inputpassconf' />
-                    </div>
+                    </div> */}
 
                     <span>
                         Already have an account? <a href='/signin'>Sign in</a>
@@ -44,3 +70,5 @@ export default function SignUp()
         </>
     )
 }
+
+export default SignUp
