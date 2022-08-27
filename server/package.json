@@ -1,0 +1,18 @@
+{
+  "name": "cron",
+  "version": "0.1.0",
+  "description": "Cron jobs for Narcissus",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Barry Wire",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19"
+  }
+}
