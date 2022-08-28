@@ -9,12 +9,17 @@ app.use(express.json())
 const cron = require('node-cron')
 const nodemailer = require('nodemailer')
 const admin = require('firebase-admin')
+const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore')
 const credentials = require('./narcissus-rjw-adminsdk.json')
 
 admin.initializeApp({
     credential: admin.credential.cert(credentials),
     databaseURL: 'https://narcissus-rjw-default-rtdb.firebaseio.com'
 })
+
+const db = getFirestore();
+let entries
+let timestamp
 
 app.post('/signup', async (req, res) =>
 {
@@ -31,6 +36,16 @@ app.get('/users', async (req, res) =>
 {
     const users = await admin.auth().listUsers()
     res.json(users)
+})
+
+app.get('/entries', async (req, res) =>
+{
+    const entries = await db.collection('entries').get()
+    res.json(entries.docs.map(doc => doc.data()))
+    return {
+        entries: entries.docs.map(doc => doc.data()),
+        timestamp: entries.docs.data().timestamp
+    }
 })
 
 // Set up the port and listener for the requests
@@ -58,20 +73,20 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
     from: 'barry.wire@outlook.com',
     to: 'barnabas.wire@gmail.com',
-    subject: 'Sending Email using Node.js',
-    html: '<h1>Welcome</h1><p>That was easy!</p>'
+    subject: 'Narcissus: The Random Journal Website',
+    html: `<h1>Journal Entry for:</h1> + ${ timestamp }`
 };
 
 
 // // create a cron scheduler to run every minute
-// cron.schedule('* */20 * * * *', () =>
-// {
-//     // transporter.sendMail(mailOptions, function (err, info)
-//     // {
-//     //     if (err)
-//     //         console.log('Error ', err);
-//     //     else
-//     //         console.log('Info ', info.response);
-//     // })
-//     console.log('Running every minute');
-// })
+cron.schedule('* * * * *', () =>
+{
+    transporter.sendMail(mailOptions, function (err, info)
+    {
+        if (err)
+            console.log('Error ', err);
+        else
+            console.log('Info ', info.response);
+    })
+    console.log('Running every minute');
+})
