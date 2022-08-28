@@ -1,6 +1,9 @@
 // React imports
 import React, { useState } from 'react'
 
+// React router dom imports
+import { useNavigate } from 'react-router-dom'
+
 // Component imports
 import Meta from '../components/Meta'
 import Navbar from '../components/Navbar'
@@ -10,6 +13,8 @@ import { UserAuth } from '../context/AuthContext'
 
 const SignUp = () =>
 {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
@@ -24,6 +29,7 @@ const SignUp = () =>
         try
         {
             await createUser(email, password)
+            navigate('/')
         } catch (error)
         {
             setError(error.message)
