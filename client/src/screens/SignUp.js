@@ -29,6 +29,10 @@ const SignUp = () =>
         try
         {
             await createUser(email, password)
+            // clear the form
+            setEmail('')
+            setPassword('')
+            
             navigate('/')
         } catch (error)
         {
