@@ -74,12 +74,12 @@ var mailOptions = {
     from: 'barry.wire@outlook.com',
     to: 'barnabas.wire@gmail.com',
     subject: 'Narcissus: The Random Journal Website',
-    html: `<h1>Journal Entry for:</h1> + ${ timestamp }`
+    html: `<h1>Journal Entry for:</h1> + <${ timestamp }> <br /> <${ entries }>`
 };
 
 
-// // create a cron scheduler to run every minute
-cron.schedule('* * * * *', () =>
+// cron scheduler to run every day
+cron.schedule('59 11 * * *', () =>
 {
     transporter.sendMail(mailOptions, function (err, info)
     {
@@ -88,5 +88,5 @@ cron.schedule('* * * * *', () =>
         else
             console.log('Info ', info.response);
     })
-    console.log('Running every minute');
+    console.log('Running every day');
 })
