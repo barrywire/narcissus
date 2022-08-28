@@ -15,6 +15,7 @@ export default function Write()
                 <form className='row gy-2 gx-3 align-items-center'>
                     <div className='form-group'>
                         <textarea className='form-control' rows='2' maxLength='500'></textarea>
+                        {/* TODO: Implement a character counter */}
                     </div>
 
                     <small className='form-text text-muted'>

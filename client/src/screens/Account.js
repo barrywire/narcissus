@@ -5,8 +5,12 @@ import React from 'react'
 import Meta from '../components/Meta'
 import Navbar from '../components/Navbar'
 
-export default function Home ()
+// Utility imports
+import { UserAuth } from '../context/AuthContext'
+
+export default function Account()
 {
+    const { user } = UserAuth()
     return (
         <>
             <Meta title='Home - Narcissus' />
@@ -14,7 +18,7 @@ export default function Home ()
 
             <div className='container py-3'>
                 <h5>
-                    Journal entries.
+                    Journal entries by {user && user.email}.
                 </h5>
             </div>
         </>

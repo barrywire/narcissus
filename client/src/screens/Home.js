@@ -18,13 +18,20 @@ export default function Home()
             <Navbar />
 
             <div className='container py-3'>
-                <h5>
-                    Journal entries by {user && user.email}.
-                </h5>
+                {user ? (<Write />) : (
+                    <>
+                        <h5>
+                            Welcome to Narcissus.
+                        </h5>
+                        <p>
+                            This is a journal application built with React and Firebase.
+                        </p>
+                        <p>
+                            Sign in to get started.
+                        </p>
+                    </>
+                )}
 
-                <hr className='my-lg-5 my-md-3' />
-
-                <Write />
             </div>
         </>
     )
