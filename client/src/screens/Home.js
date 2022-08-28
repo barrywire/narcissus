@@ -19,7 +19,7 @@ export default function Home()
 
             <div className='container py-3'>
                 <h5>
-                    Journal entries by {user.email}.
+                    Journal entries by {user && user.email}.
                 </h5>
 
                 <hr className='my-lg-5 my-md-3' />

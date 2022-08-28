@@ -2,15 +2,29 @@
 import React from 'react'
 
 // React Router imports
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Utility imports
 import { UserAuth } from '../context/AuthContext'
 
 export default function Navbar({ active })
 {
+    const navigate = useNavigate();
 
     const { user, logout } = UserAuth()
+
+    const handleLogout = async () =>
+    {
+        try
+        {
+            await logout()
+            navigate('/')
+            console.log('You are logged out')
+        } catch (error)
+        {
+            console.log(error.message)
+        }
+    }
 
     return (
         <div className='container border-bottom'>
@@ -39,7 +53,7 @@ export default function Navbar({ active })
                     {user ? (
                         <li className='nav-item'>
                             {/* Button to sign out */}
-                            <button onClick={logout} className='btn btn-outline-danger'>
+                            <button onClick={handleLogout} className='btn btn-outline-danger'>
                                 Sign Out
                             </button>
                         </li>

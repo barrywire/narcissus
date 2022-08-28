@@ -11,15 +11,16 @@ import Navbar from '../components/Navbar'
 // Utility imports
 import { UserAuth } from '../context/AuthContext'
 
-const SignUp = () =>
+export default function SignUp()
 {
     const navigate = useNavigate();
+
+    const { createUser } = UserAuth()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    const { createUser } = UserAuth()
 
     const handleSubmit = async (e) =>
     {
@@ -32,7 +33,7 @@ const SignUp = () =>
             // clear the form
             setEmail('')
             setPassword('')
-            
+
             navigate('/')
         } catch (error)
         {
@@ -62,6 +63,14 @@ const SignUp = () =>
                         <input type='password' onChange={(e) => setPassword(e.target.value)} name='password' className='form-control' id='inputpass' />
                     </div>
 
+                    {error &&
+                        <div className='col-12'>
+                            <div className='alert alert-danger alert-dismissible fade show' role='alert'>
+                                {error.message}
+                                <button type='button' className='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>
+                        </div>
+                    }
                     {/* TODO: Add password confirmation functionality */}
                     {/* <div className='col-md-6'>
                         <label htmlFor='inputpassconf' className='form-label'>Confirm Password</label>
@@ -80,5 +89,3 @@ const SignUp = () =>
         </>
     )
 }
-
-export default SignUp
